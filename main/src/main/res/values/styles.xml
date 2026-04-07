@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="text_15_red">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/red_1</item>
+    </style>
+</resources>

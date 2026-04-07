@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Skinnable</string>
+    <string name="title_item_default">默认</string>
+    <string name="custom_text_view">内置Night</string>
+    <string name="assets_skin_night">Assets 内置Night</string>
+</resources>

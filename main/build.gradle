@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 33
+    defaultConfig {
+        applicationId 'com.util.skinnable.main'
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.1"
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res-night']
+        }
+    }
+
+    lint {
+        abortOnError false
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation project(':librarys:skin-base')
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation project(':librarys:skin-compat')
+
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation project(':librarys:skin-constraintlayout')
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(':librarys:skin-material-design')
+
+}
