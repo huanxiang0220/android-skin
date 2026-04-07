@@ -27,8 +27,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.google.android.material:material:1.8.0'
-    implementation project(':librarys:skin-base')
-    implementation project(':librarys:skin-compat')
+    implementation project(':skin-base')
+    implementation project(':skin-compat')
 }
 
 afterEvaluate {
