@@ -8,31 +8,42 @@
 
 ``` groovy
 dependencies {
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.10'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.github.Orientsec.Skinnable:SkinLibrary:1.0.0'
+    implementation 'com.github.huanxiang0220.android-skin:SkinLibrary:1.0.0'
 }
 ```
 
-## 2.添加support仓库
+## 2.添加 JitPack 仓库
+
+``` groovy
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+## 3.按需引用模块
 
 ``` groovy
 dependencies {
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.10'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.github.Orientsec.Skinnable:SkinLibrary:1.0.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
 
-    // 支持appcompat
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'com.github.Orientsec.Skinnable:SkinSupportCompat:1.0.0'
+    // 基础库
+    implementation 'com.github.huanxiang0220.android-skin:SkinLibrary:1.0.0'
 
-    // 支持material View
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'com.github.Orientsec.Skinnable:SkinSupportDesign:1.0.0'
+    // 支持 appcompat
+    implementation 'com.github.huanxiang0220.android-skin:SkinSupportCompat:1.0.0'
 
-    // 支持ConstraintLayout
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.github.Orientsec.Skinnable:SkinSupportConstraintLayout:1.0.0'
+    // 支持 material View
+    implementation 'com.github.huanxiang0220.android-skin:SkinSupportDesign:1.0.0'
+
+    // 支持 ConstraintLayout
+    implementation 'com.github.huanxiang0220.android-skin:SkinSupportConstraintLayout:1.0.0'
 }
 ```
 
