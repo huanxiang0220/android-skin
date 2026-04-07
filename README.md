@@ -124,3 +124,5 @@ sourceSets {
 // 指定皮肤插件
 SkinManager.loadSkin(SkinStrategy.Assets("skin.night"))
 ```
+
+# android-skin
