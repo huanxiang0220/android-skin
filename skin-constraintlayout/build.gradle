@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
+
+android {
+    compileSdkVersion rootProject.ext.skin_compile_sdk
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.skin_min_sdk
+        targetSdkVersion rootProject.ext.skin_target_sdk
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lint {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(':skin-base')
+    implementation project(':skin-compat')
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId rootProject.ext.publish_group_id
+                artifactId 'SkinSupportConstraintLayout'
+                version rootProject.ext.publish_version
+            }
+        }
+    }
+}
