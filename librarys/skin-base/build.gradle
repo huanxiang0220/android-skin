@@ -1,12 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion rootProject.ext.skin_compile_sdk
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 33
+        minSdkVersion rootProject.ext.skin_min_sdk
+        targetSdkVersion rootProject.ext.skin_target_sdk
     }
 
     buildTypes {
@@ -26,4 +27,18 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId rootProject.ext.publish_group_id
+                artifactId 'SkinLibrary'
+                version rootProject.ext.publish_version
+            }
+        }
+    }
 }

@@ -1,12 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion rootProject.ext.skin_compile_sdk
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 32
+        minSdkVersion rootProject.ext.skin_min_sdk
+        targetSdkVersion rootProject.ext.skin_target_sdk
     }
 
     buildTypes {
@@ -27,4 +28,18 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation project(':librarys:skin-base')
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId rootProject.ext.publish_group_id
+                artifactId 'SkinSupportCompat'
+                version rootProject.ext.publish_version
+            }
+        }
+    }
 }

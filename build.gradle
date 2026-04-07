@@ -3,6 +3,11 @@
 buildscript {
     ext {
         kotlin_version = '1.9.24'
+        publish_group_id = 'com.github.huanxiang0220.android-skin'
+        publish_version = '1.0.0'
+        skin_compile_sdk = 33
+        skin_min_sdk = 21
+        skin_target_sdk = 33
     }
     repositories {
         maven { url 'https://maven.aliyun.com/nexus/content/releases/' }
