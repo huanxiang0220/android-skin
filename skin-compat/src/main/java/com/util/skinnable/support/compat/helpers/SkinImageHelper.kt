@@ -4,10 +4,11 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.ImageView
 import com.util.skin.library.helpers.SkinHelper
+import com.util.skin.library.widget.SkinImageSrcable
 import com.util.skinnable.support.compat.R
 import com.util.skinnable.support.compat.res.SkinCompatVectorResources
 
-class SkinImageHelper(view: ImageView) : SkinHelper(view) {
+class SkinImageHelper(view: ImageView) : SkinHelper(view), SkinImageSrcable {
     private var mSrcCompatResId = INVALID_ID
     override val mView: ImageView
         get() = super.mView as ImageView
@@ -15,7 +16,12 @@ class SkinImageHelper(view: ImageView) : SkinHelper(view) {
     override fun loadFromAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
         var a: TypedArray? = null
         try {
-            a = mView.context.obtainStyledAttributes(attrs, R.styleable.SkinCompatImageView, defStyleAttr, 0)
+            a = mView.context.obtainStyledAttributes(
+                attrs,
+                R.styleable.SkinCompatImageView,
+                defStyleAttr,
+                0
+            )
             mSrcId = a!!.getResourceId(R.styleable.SkinCompatImageView_android_src, INVALID_ID)
             mSrcCompatResId = a.getResourceId(R.styleable.SkinCompatImageView_srcCompat, INVALID_ID)
         } finally {
@@ -26,7 +32,8 @@ class SkinImageHelper(view: ImageView) : SkinHelper(view) {
 
     override fun applySkin() {
         if (checkResourceIdValid(mSrcCompatResId)) {
-            val drawable = SkinCompatVectorResources.getDrawableCompat(mView.context, mSrcCompatResId)
+            val drawable =
+                SkinCompatVectorResources.getDrawableCompat(mView.context, mSrcCompatResId)
             if (drawable != null) {
                 mView.setImageDrawable(drawable)
             }
@@ -41,5 +48,9 @@ class SkinImageHelper(view: ImageView) : SkinHelper(view) {
                 }
             }
         }
+    }
+
+    override fun setImageSrcId(drawableId: Int) {
+        this.mSrcCompatResId = drawableId
     }
 }
