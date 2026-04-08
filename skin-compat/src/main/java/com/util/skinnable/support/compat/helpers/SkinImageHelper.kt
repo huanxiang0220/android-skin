@@ -4,11 +4,10 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.ImageView
 import com.util.skin.library.helpers.SkinHelper
-import com.util.skin.library.widget.SkinImageSrcable
 import com.util.skinnable.support.compat.R
 import com.util.skinnable.support.compat.res.SkinCompatVectorResources
 
-class SkinImageHelper(view: ImageView) : SkinHelper(view), SkinImageSrcable {
+class SkinImageHelper(view: ImageView) : SkinHelper(view) {
     private var mSrcCompatResId = INVALID_ID
     override val mView: ImageView
         get() = super.mView as ImageView
@@ -50,7 +49,4 @@ class SkinImageHelper(view: ImageView) : SkinHelper(view), SkinImageSrcable {
         }
     }
 
-    override fun setImageSrcId(drawableId: Int) {
-        this.mSrcCompatResId = drawableId
-    }
 }
