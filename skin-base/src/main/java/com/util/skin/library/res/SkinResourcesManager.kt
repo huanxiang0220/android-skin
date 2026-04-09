@@ -157,8 +157,8 @@ object SkinResourcesManager {
         val a = context.obtainStyledAttributes(attrs, R.styleable.SkinSupportable, defStyleAttr, 0)
         return try {
             if (a.hasValue(R.styleable.SkinSupportable_skinnable)) {
-                a.getBoolean(R.styleable.SkinSupportable_skinnable, false)
-            } else false
+                a.getBoolean(R.styleable.SkinSupportable_skinnable, true)
+            } else true
         } finally {
             a.recycle()
         }

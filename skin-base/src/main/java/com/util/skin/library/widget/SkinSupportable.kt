@@ -5,6 +5,7 @@ interface SkinSupportable {
      * 是否支持换肤
      */
     val skinnable: Boolean
+        get() = true
 
     /**
      * 换肤回调
