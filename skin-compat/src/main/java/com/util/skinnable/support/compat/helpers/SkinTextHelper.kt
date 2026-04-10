@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.core.graphics.drawable.DrawableCompat
 import com.util.skin.library.helpers.SkinHelper
 import com.util.skin.library.res.SkinResourcesManager
 import com.util.skinnable.support.compat.R
@@ -25,6 +26,7 @@ open class SkinTextHelper(view: TextView) : SkinHelper(view) {
         textColorResId = colorId
     }
     private var mTextColorHintResId = INVALID_ID
+    private var mDrawableTintResId = INVALID_ID
     protected var mDrawableBottomResId = INVALID_ID
     protected var mDrawableLeftResId = INVALID_ID
     protected var mDrawableRightResId = INVALID_ID
@@ -50,6 +52,9 @@ open class SkinTextHelper(view: TextView) : SkinHelper(view) {
         }
         if (a.hasValue(R.styleable.SkinTextHelper_android_drawableBottom)) {
             mDrawableBottomResId = a.getResourceId(R.styleable.SkinTextHelper_android_drawableBottom, INVALID_ID)
+        }
+        if (a.hasValue(R.styleable.SkinTextHelper_drawableTint)) {
+            mDrawableTintResId = a.getResourceId(R.styleable.SkinTextHelper_drawableTint, INVALID_ID)
         }
         a.recycle()
 
@@ -151,6 +156,17 @@ open class SkinTextHelper(view: TextView) : SkinHelper(view) {
         applyCompoundDrawablesResource()
     }
 
+    private fun applyDrawableTint(drawable: Drawable?): Drawable? {
+        if (drawable == null || !checkResourceIdValid(mDrawableTintResId)) {
+            return drawable
+        }
+        val tintList = SkinResourcesManager.getColorStateList(mView.context, mDrawableTintResId)
+            ?: return drawable
+        val wrapped = DrawableCompat.wrap(drawable.mutate())
+        DrawableCompat.setTintList(wrapped, tintList)
+        return wrapped
+    }
+
     private fun applyCompoundDrawablesResource() {
         var drawableLeft: Drawable? = null
         var drawableTop: Drawable? = null
@@ -173,7 +189,12 @@ open class SkinTextHelper(view: TextView) : SkinHelper(view) {
             || mDrawableRightResId != INVALID_ID
             || mDrawableBottomResId != INVALID_ID
         ) {
-            mView.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, drawableTop, drawableRight, drawableBottom)
+            mView.setCompoundDrawablesWithIntrinsicBounds(
+                applyDrawableTint(drawableLeft),
+                applyDrawableTint(drawableTop),
+                applyDrawableTint(drawableRight),
+                applyDrawableTint(drawableBottom)
+            )
         }
     }
 

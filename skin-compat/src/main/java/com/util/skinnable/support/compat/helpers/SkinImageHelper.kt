@@ -9,6 +9,7 @@ import com.util.skinnable.support.compat.res.SkinCompatVectorResources
 
 class SkinImageHelper(view: ImageView) : SkinHelper(view) {
     private var mSrcCompatResId = INVALID_ID
+    private var mTintResId = INVALID_ID
     override val mView: ImageView
         get() = super.mView as ImageView
 
@@ -23,13 +24,24 @@ class SkinImageHelper(view: ImageView) : SkinHelper(view) {
             )
             mSrcId = a!!.getResourceId(R.styleable.SkinCompatImageView_android_src, INVALID_ID)
             mSrcCompatResId = a.getResourceId(R.styleable.SkinCompatImageView_srcCompat, INVALID_ID)
+            mTintResId = a.getResourceId(R.styleable.SkinCompatImageView_tint, INVALID_ID)
         } finally {
             a?.recycle()
         }
         applySkin()
     }
 
+    private fun applyTintResource() {
+        if (checkResourceIdValid(mTintResId)) {
+            mView.imageTintList = com.util.skin.library.res.SkinResourcesManager.getColorStateList(
+                mView.context,
+                mTintResId
+            )
+        }
+    }
+
     override fun applySkin() {
+        applyTintResource()
         if (checkResourceIdValid(mSrcCompatResId)) {
             val drawable =
                 SkinCompatVectorResources.getDrawableCompat(mView.context, mSrcCompatResId)
