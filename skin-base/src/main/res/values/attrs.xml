@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="drawableTint" format="color|reference"/>
     <declare-styleable name="SkinBackgroundHelper">
         <attr name="android:background"/>
     </declare-styleable>
