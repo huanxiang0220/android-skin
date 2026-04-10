@@ -10,7 +10,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.graphics.drawable.DrawableCompat
 import com.util.skin.library.helpers.SkinHelper
 import com.util.skin.library.res.SkinResourcesManager
-import com.util.skinnable.support.compat.R
+import com.util.skin.library.R
 import com.util.skinnable.support.compat.res.SkinCompatVectorResources
 
 
