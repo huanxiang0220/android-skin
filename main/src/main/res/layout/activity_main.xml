@@ -79,6 +79,21 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_text1"
                 app:skinnable="true" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginTop="15dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="center"
+                android:src="@drawable/comm_ic_back_black"
+                app:skinnable="true"
+                app:tint="@color/text_color" />
+
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"/>
+
             <TextView
                 android:id="@+id/tv_text3"
                 android:layout_width="match_parent"

@@ -8,6 +8,7 @@ import com.util.skin.library.SkinManager
 import com.util.skin.library.loader.SkinStrategy
 import com.util.skin.library.widget.SkinTextColorable
 import com.util.skinnable.skinnable.main.databinding.ActivityMainBinding
+import com.util.skinnable.skinnable.main.databinding.CommCoinToolbarBinding
 
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
@@ -45,6 +46,11 @@ class MainActivity : AppCompatActivity() {
         }
 //        binding.tvText2.setTextAppearance(R.style.Base_Widget_AppCompat_ListView)
         binding.tvText2.setTextColorId(R.color.red_1)
+
+        binding.container.post {
+            CommCoinToolbarBinding.inflate(layoutInflater,
+                binding.container, true)
+        }
     }
 }
 

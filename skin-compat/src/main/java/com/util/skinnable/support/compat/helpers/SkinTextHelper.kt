@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.widget.TextViewCompat
 import com.util.skin.library.helpers.SkinHelper
 import com.util.skin.library.res.SkinResourcesManager
 import com.util.skin.library.R
@@ -156,7 +157,7 @@ open class SkinTextHelper(view: TextView) : SkinHelper(view) {
         applyCompoundDrawablesResource()
     }
 
-    private fun applyDrawableTint(drawable: Drawable?): Drawable? {
+    protected fun applyDrawableTint(drawable: Drawable?): Drawable? {
         if (drawable == null || !checkResourceIdValid(mDrawableTintResId)) {
             return drawable
         }
@@ -165,6 +166,14 @@ open class SkinTextHelper(view: TextView) : SkinHelper(view) {
         val wrapped = DrawableCompat.wrap(drawable.mutate())
         DrawableCompat.setTintList(wrapped, tintList)
         return wrapped
+    }
+
+    private fun applyCompoundDrawableTintListResource() {
+        if (!checkResourceIdValid(mDrawableTintResId)) {
+            return
+        }
+        val tintList = SkinResourcesManager.getColorStateList(mView.context, mDrawableTintResId)
+        TextViewCompat.setCompoundDrawableTintList(mView, tintList)
     }
 
     private fun applyCompoundDrawablesResource() {
@@ -200,6 +209,7 @@ open class SkinTextHelper(view: TextView) : SkinHelper(view) {
 
     override fun applySkin() {
         applyCompoundDrawablesRelativeResource()
+        applyCompoundDrawableTintListResource()
         applyTextColorResource()
         applyTextColorHintResource()
     }

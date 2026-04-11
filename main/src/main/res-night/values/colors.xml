@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="text_background_night">#09de3b</color>
+    <color name="text_color_night">#d62222</color>
     <color name="container_bg_night">#E4A2A2</color>
 
     <color name="red_1_night">#6B80EA</color>

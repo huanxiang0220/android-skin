@@ -3,6 +3,7 @@ package com.util.skinnable.support.compat.helpers
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.ImageView
+import androidx.annotation.ColorRes
 import com.util.skin.library.helpers.SkinHelper
 import com.util.skinnable.support.compat.R
 import com.util.skinnable.support.compat.res.SkinCompatVectorResources
@@ -10,6 +11,14 @@ import com.util.skinnable.support.compat.res.SkinCompatVectorResources
 class SkinImageHelper(view: ImageView) : SkinHelper(view) {
     private var mSrcCompatResId = INVALID_ID
     private var mTintResId = INVALID_ID
+
+    fun setTintColorId(@ColorRes colorId: Int) {
+        mTintResId = colorId
+        if (checkResourceIdValid(mTintResId)) {
+            applyTintResource()
+        }
+    }
+
     override val mView: ImageView
         get() = super.mView as ImageView
 
@@ -41,7 +50,6 @@ class SkinImageHelper(view: ImageView) : SkinHelper(view) {
     }
 
     override fun applySkin() {
-        applyTintResource()
         if (checkResourceIdValid(mSrcCompatResId)) {
             val drawable =
                 SkinCompatVectorResources.getDrawableCompat(mView.context, mSrcCompatResId)
@@ -59,6 +67,7 @@ class SkinImageHelper(view: ImageView) : SkinHelper(view) {
                 }
             }
         }
+        applyTintResource()
     }
 
 }

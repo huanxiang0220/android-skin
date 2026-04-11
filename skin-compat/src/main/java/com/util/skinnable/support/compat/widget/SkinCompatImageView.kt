@@ -8,12 +8,13 @@ import com.util.skin.library.res.SkinResourcesManager
 import com.util.skinnable.support.compat.helpers.SkinBackgroundHelper
 import com.util.skinnable.support.compat.helpers.SkinImageHelper
 import com.util.skin.library.widget.SkinSupportable
+import com.util.skin.library.widget.SkinTintable
 
 class SkinCompatImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : AppCompatImageView(context, attrs, defStyleAttr), SkinSupportable {
+) : AppCompatImageView(context, attrs, defStyleAttr), SkinSupportable, SkinTintable {
     private val mBackgroundTintHelper= SkinBackgroundHelper(this)
     private val mImageHelper = SkinImageHelper(this)
     override val skinnable: Boolean by lazy {
@@ -37,6 +38,10 @@ class SkinCompatImageView @JvmOverloads constructor(
     override fun setImageResource(@DrawableRes resId: Int) {
         // Intercept this call and instead retrieve the Drawable via the image helper
         mImageHelper.setSrcId(resId)
+    }
+
+    override fun setTintColorId(colorId: Int) {
+        mImageHelper.setTintColorId(colorId)
     }
 
     override fun applySkin() {
