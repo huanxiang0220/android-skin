@@ -1,0 +1,5 @@
+jdk:
+  - openjdk17
+
+install:
+  - ./gradlew --no-daemon clean :skin-base:publishToMavenLocal :skin-compat:publishToMavenLocal :skin-constraintlayout:publishToMavenLocal :skin-material-design:publishToMavenLocal -x test -x lint
